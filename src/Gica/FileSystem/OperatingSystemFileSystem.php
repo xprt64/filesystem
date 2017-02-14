@@ -31,7 +31,7 @@ class OperatingSystemFileSystem implements FileSystemInterface
 
         $ok = mkdir(...$parameters);
         if (false === $ok)
-            throw new Exception('Directory create failed');
+            throw new Exception('Directory ' . $directoryPath . ' create failed:' . error_get_last()['message']);
 
         if (!$this->isDirectory($directoryPath))
             throw new Exception('Directory create failed: directory does not exists after creation');
@@ -69,7 +69,9 @@ class OperatingSystemFileSystem implements FileSystemInterface
     {
         $ok = unlink($filePath);
         if (!$ok)
+        {
             throw new Exception('File delete failed');
+        }
     }
 
     public function fileExists($filePath)

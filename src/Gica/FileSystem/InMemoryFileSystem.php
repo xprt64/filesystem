@@ -115,6 +115,9 @@ class InMemoryFileSystem implements \Gica\FileSystem\FileSystemInterface
     public function fileDelete($filePath)
     {
         $realPath = $this->realPath($filePath);
+        if (!isset($this->files[$realPath])) {
+            throw new \Exception('File delete failed: file does not exist');
+        }
         unset($this->files[$realPath]);
     }
 
@@ -241,13 +244,13 @@ class InMemoryFileSystem implements \Gica\FileSystem\FileSystemInterface
         }
     }
 
-    public function fileGetStream($path, $mode):\Psr\Http\Message\StreamInterface
+    public function fileGetStream($path, $mode): \Psr\Http\Message\StreamInterface
     {
         if (!$this->fileExists($path))
             throw new \Gica\FileSystem\Exception\FileReadError($this->formatString("File '%s' does not exist", $path));
 
         $realPath = $this->realPath($path);
-        
+
         return new \Gica\FileSystem\MutableStringStream($this->files[$realPath]);
     }
 

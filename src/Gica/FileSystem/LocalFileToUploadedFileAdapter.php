@@ -7,7 +7,7 @@
 namespace Gica\FileSystem;
 
 
-class LocalFileToUploadedFileAdapter extends \Zend\Diactoros\UploadedFile
+class LocalFileToUploadedFileAdapter extends \Laminas\Diactoros\UploadedFile
     implements \Psr\Http\Message\UploadedFileInterface
 {
     protected $shouldMove = false;

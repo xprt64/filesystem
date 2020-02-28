@@ -9,7 +9,7 @@ namespace Gica\FileSystem;
 use Gica\FileSystem\Exception\FileReadError;
 use Gica\Xss\HtmlString;
 use Psr\Http\Message\StreamInterface;
-use Zend\Diactoros\Stream;
+use Laminas\Diactoros\Stream;
 
 class OperatingSystemFileSystem implements FileSystemInterface
 {

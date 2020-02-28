@@ -60,13 +60,13 @@ class StreamToResourceReadAdapterTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    public function test_getResourceWithZendDiactorosStream()
+    public function test_getResourceWithLaminasDiactorosStream()
     {
-        $tempFile = tempnam(sys_get_temp_dir(), 'test_getResourceWithZendDiactorosStream');
+        $tempFile = tempnam(sys_get_temp_dir(), 'test_getResourceWithLaminasDiactorosStream');
         file_put_contents($tempFile, 'abcd');
         $this->assertEquals('abcd', file_get_contents($tempFile));
 
-        $stream = new \Zend\Diactoros\Stream($tempFile, 'r+');
+        $stream = new \Laminas\Diactoros\Stream($tempFile, 'r+');
 
         $this->assertEquals('abcd', $stream->__toString());
 
